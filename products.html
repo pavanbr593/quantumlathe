@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | QuantumLathe AI Suite</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon (SVG Logo) -->
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+    <style>
+        :root {
+            --black: #000000;
+            --dark-gray: #0D0D0D;
+            --gray: #1A1A1A;
+            --light-gray: #A0A0A0;
+            --cyan: #00D4FF;
+            --white: #FFFFFF;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-container img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .back-link {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--light-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--cyan);
+        }
+
+        .page-title {
+            padding: 6rem 0 4rem;
+        }
+
+        .page-title h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title p {
+            font-size: 1.25rem;
+            color: var(--light-gray);
+            max-width: 800px;
+        }
+
+        /* Product Detail Sections */
+        .product-section {
+            padding: 10rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .product-image {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0.8;
+            transition: opacity 0.5s;
+        }
+
+        .product-image:hover img {
+            opacity: 1;
+        }
+
+        .product-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyan);
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #eee;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2.5rem 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--light-gray);
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+
+        .benefit-tag {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--cyan);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #444;
+        }
+
+        @media (max-width: 900px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .product-layout.reverse {
+                direction: ltr;
+            }
+
+            .page-title h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="container nav">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.svg" alt="QuantumLathe Logo">
+                QuantumLathe
+            </a>
+            <div class="nav-links" style="display: flex; gap: 2rem;">
+                <a href="index.html#about"
+                    style="color: var(--light-gray); text-decoration: none; font-size: 0.9rem;">Philosophy</a>
+                <a href="index.html#products"
+                    style="color: var(--light-gray); text-decoration: none; font-size: 0.9rem;">Products</a>
+                <a href="index.html#testimonials"
+                    style="color: var(--light-gray); text-decoration: none; font-size: 0.9rem;">Clients</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-title">
+            <a href="index.html" class="back-link">← Home</a>
+            <h1>The Quantum Product Suite</h1>
+            <p>A unified architecture designed for AI engineers. From deep-dive observability to strict ethical
+                governance, we provide the tools required for industrial-scale AI deployment.</p>
+        </section>
+
+        <!-- Product 1 -->
+        <section id="spectraops" class="product-section">
+            <div class="product-layout">
+                <div class="product-info">
+                    <h2>SpectraOps</h2>
+                    <h3>High-Fidelity AI Observability</h3>
+                    <p>SpectraOps isn't just a monitoring tool; it's a telescope for your inference layer. It provides
+                        instant visibility into model health, data drift, and performance anomalies across millions of
+                        requests.</p>
+                    <ul class="feature-list">
+                        <li><strong>Dynamic Drift Detection:</strong> Real-time alerts when inference data deviates from
+                            training distributions.</li>
+                        <li><strong>Latency Heatmaps:</strong> Identify sub-millisecond bottlenecks in your model
+                            serving pipeline.</li>
+                        <li><strong>High-Dimensional Viz:</strong> Project complex embeddings into interactive 3D spaces
+                            to understand model "logic".</li>
+                    </ul>
+                    <div class="benefit-tag">Utility: 34% reduction in Stockouts & Performance Gains</div>
+                </div>
+                <div class="product-image">
+                    <img src="assets/spectraops.jpg" alt="Data Analytics Visualization">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 2 -->
+        <section id="nexusthread" class="product-section">
+            <div class="product-layout" style="direction: rtl;">
+                <div class="product-info" style="direction: ltr;">
+                    <h2>NexusThread</h2>
+                    <h3>Immutable AI Traceability</h3>
+                    <p>NexusThread creates a cryptographic audit trail for every single prediction. Never guess why a
+                        model made a decision—NexusThread maps the journey from training data to output.</p>
+                    <ul class="feature-list">
+                        <li><strong>Decision Lineage:</strong> Link every prediction back to the specific version of
+                            weights and training shards.</li>
+                        <li><strong>Weight Evolution:</strong> Track how model parameters shift over time in fine-tuned
+                            environments.</li>
+                        <li><strong>Input Reconstruction:</strong> Reproduce exact environment states for debugging
+                            edge-case failures.</li>
+                    </ul>
+                    <div class="benefit-tag">Utility: Absolute regulatory compliance & zero-guess debugging</div>
+                </div>
+                <div class="product-image" style="direction: ltr;">
+                    <img src="assets/nexusthread.jpg" alt="Server Infrastructure Traceability">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 3 -->
+        <section id="aegisgrid" class="product-section">
+            <div class="product-layout">
+                <div class="product-info">
+                    <h2>AegisGrid</h2>
+                    <h3>Ethical AI Governance</h3>
+                    <p>AegisGrid is the active shield for your AI deployments. It enforces ethical guidelines, safety
+                        guardrails, and compliance standards automatically, ensuring your AI remains a responsible
+                        asset.</p>
+                    <ul class="feature-list">
+                        <li><strong>Policy Enforcement:</strong> Real-time filtering of biased, unsafe, or non-compliant
+                            model outputs.</li>
+                        <li><strong>Audit-Ready Reporting:</strong> Automatically generate SOC2 and ISO-compliant
+                            reports for AI safety.</li>
+                        <li><strong>Collaborative Sandbox:</strong> Test new governance policies without affecting live
+                            production traffic.</li>
+                    </ul>
+                    <div class="benefit-tag">Utility: 100% Assurance on Compliance & Brand Safety</div>
+                </div>
+                <div class="product-image">
+                    <img src="assets/aegisgrid.jpg" alt="Cybersecurity and Governance Visualization">
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 10rem 0; text-align: center;">
+            <p class="text-secondary" style="margin-bottom: 2rem; color: #666;">Ready to modernize your stack?</p>
+            <a href="#" class="cta-btn"
+                style="background: var(--cyan); color: #000; padding: 1.5rem 3rem; border-radius: 4px; font-weight: 800; text-transform: uppercase;">Request
+                Integration</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 QuantumLathe Inc. Atlanta, GA.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

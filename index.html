@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumLathe | Precision AI Infrastructure</title>
+    <meta name="description"
+        content="QuantumLathe provides enterprise-grade AI Observability, Traceability, and Governance products for mission-critical systems.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon (SVG Logo) -->
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+    <style>
+        :root {
+            --black: #000000;
+            --dark-gray: #111111;
+            --gray: #333333;
+            --light-gray: #888888;
+            --cyan: #00D4FF;
+            --cyan-glow: rgba(0, 212, 255, 0.4);
+            --white: #FFFFFF;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .text-cyan {
+            color: var(--cyan);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .logo-container img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--light-gray);
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .cta-btn {
+            background: var(--white);
+            color: var(--black);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 16rem 0 12rem;
+            text-align: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('assets/hero-bg.jpg') center/cover no-repeat;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: var(--cyan);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Cloud Banner */
+        .cloud-banner {
+            padding: 4rem 0;
+            background: var(--dark-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .cloud-banner p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .cloud-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            align-items: center;
+            opacity: 0.6;
+            filter: grayscale(1);
+        }
+
+        .cloud-platforms img {
+            height: 30px;
+        }
+
+        /* Products Grid */
+        .products-preview {
+            padding: 10rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 6rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--dark-gray);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .product-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-10px);
+            background: #080808;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-card .icon {
+            width: 48px;
+            height: 48px;
+            color: var(--cyan);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-thumb {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+        }
+
+        .product-card p {
+            color: var(--light-gray);
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .learn-more {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 10rem 0;
+            background: radial-gradient(circle at bottom right, rgba(0, 212, 255, 0.05), transparent 50%);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .testimonial-card {
+            padding: 3rem;
+            border-left: 2px solid var(--cyan);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .testimonial-card cite {
+            display: block;
+            font-style: normal;
+        }
+
+        .testimonial-card .role {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--light-gray);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-card .company {
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 0 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            flex-basis: 30%;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 6rem;
+        }
+
+        .footer-group h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-group ul {
+            list-style: none;
+        }
+
+        .footer-group li {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .footer-group li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.8rem;
+            color: #444;
+        }
+
+        /* Animations */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="container nav">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.svg" alt="QuantumLathe Logo">
+                QuantumLathe
+            </a>
+            <div class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="#about">Philosophy</a>
+                <a href="#testimonials">Clients</a>
+            </div>
+            <a href="#" class="cta-btn">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-tag">Precision AI Infrastructure</div>
+                <h1>Observability. <br><span class="text-cyan">Refined.</span></h1>
+                <p>Enterprise-grade AI products for systems that cannot afford to fail. Trace every decision, monitor
+                    every node, govern with absolute certainty.</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="cta-btn">View All Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cloud Banner -->
+        <section class="cloud-banner">
+            <div class="container">
+                <p>Deploy in clicks. Unified across cloud.</p>
+                <div class="cloud-platforms">
+                    <!-- Placeholder logos with high-contrast text names as fallback -->
+                    <span style="font-weight: 800; font-size: 1.5rem;">AWS</span>
+                    <span style="font-weight: 800; font-size: 1.5rem;">Google Cloud</span>
+                    <span style="font-weight: 800; font-size: 1.5rem;">Microsoft Azure</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy" id="about">
+            <div class="container">
+                <div class="product-layout"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 10rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <div class="philosophy-content" data-reveal>
+                        <h2 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 2rem;">Our
+                            Philosophy: <br><span class="text-cyan">Industrial Precision.</span></h2>
+                        <p style="color: var(--light-gray); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px;">
+                            At QuantumLathe, we believe AI is no longer an experiment—it is the industrial lathe of the
+                            digital age. Just as precision engineering transformed manufacturing, our tools provide the
+                            exactness required to turn raw models into reliable enterprise infrastructure.</p>
+                        <p style="color: var(--light-gray); font-size: 1.1rem;">We don't just observe; we refine. We
+                            don't just trace; we validate. We don't just govern; we protect.</p>
+                    </div>
+                    <div class="philosophy-visual" data-reveal style="position: relative;">
+                        <div
+                            style="background: var(--dark-gray); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <img src="assets/logo.svg" alt="QuantumLathe Symbol"
+                                style="width: 100%; height: auto; opacity: 0.8;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Preview -->
+        <section class="products-preview" id="products">
+            <div class="container">
+                <div class="section-header" data-reveal>
+                    <h2>The Product Suite</h2>
+                    <p class="text-cyan">High-fidelity tools for the modern AI stack.</p>
+                </div>
+                <div class="grid">
+                    <div class="product-card" data-reveal>
+                        <div class="product-img-wrapper">
+                            <img src="assets/spectraops.jpg" alt="SpectraOps" class="product-thumb">
+                        </div>
+                        <h3>SpectraOps</h3>
+                        <p>Real-time AI observability. Monitor model health, predict drift, and visualize
+                            high-dimensional data flows with sub-millisecond latency.</p>
+                        <a href="products.html#spectraops" class="learn-more">Explore Product →</a>
+                    </div>
+
+                    <div class="product-card" data-reveal>
+                        <div class="product-img-wrapper">
+                            <img src="assets/nexusthread.jpg" alt="NexusThread" class="product-thumb">
+                        </div>
+                        <h3>NexusThread</h3>
+                        <p>End-to-end AI traceability. Unravel every model decision. From raw data origin to vector
+                            weight evolution, maintain absolute lineage.</p>
+                        <a href="products.html#nexusthread" class="learn-more">Explore Product →</a>
+                    </div>
+
+                    <div class="product-card" data-reveal>
+                        <div class="product-img-wrapper">
+                            <img src="assets/aegisgrid.jpg" alt="AegisGrid" class="product-thumb">
+                        </div>
+                        <h3>AegisGrid</h3>
+                        <p>AI Governance & Safety. Comprehensive compliance frameworks and ethical guardrails that
+                            operate at the speed of computation.</p>
+                        <a href="products.html#aegisgrid" class="learn-more">Explore Product →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header" data-reveal>
+                    <h2>Trusted by the Leaders</h2>
+                    <p class="text-secondary">Mission-critical feedback from our early partners.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card" data-reveal>
+                        <blockquote>"QuantumLathe brought clarity to our black-box models. The depth of observability in
+                            SpectraOps is simply spectacular."</blockquote>
+                        <cite>
+                            <div class="role">Head of Data Architecture</div>
+                            <div class="company">SkySyncWare</div>
+                        </cite>
+                    </div>
+                    <div class="testimonial-card" data-reveal>
+                        <blockquote>"NexusThread provides the most robust governance layer we've integrated. A
+                            cornerstone of our compliance stack."</blockquote>
+                        <cite>
+                            <div class="role">Chief Information Security Officer</div>
+                            <div class="company">FortiShieldTech</div>
+                        </cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <div class="logo-container">
+                        <img src="assets/logo.svg" alt="QuantumLathe Logo">
+                        QuantumLathe
+                    </div>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Atlanta, Georgia. Servicing the future
+                        of AI Ops globally.</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-group">
+                        <h4>Products</h4>
+                        <ul>
+                            <li><a href="products.html#spectraops">SpectraOps</a></li>
+                            <li><a href="products.html#nexusthread">NexusThread</a></li>
+                            <li><a href="products.html#aegisgrid">AegisGrid</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-group">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Cloud Sync</a></li>
+                            <li><a href="#">API Docs</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuantumLathe Inc. All rights reserved.</p>
+                <p>Designed for Precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animation on scroll
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+
+</html>
